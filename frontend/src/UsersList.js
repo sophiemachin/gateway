@@ -16,7 +16,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
 import rows from './data/users.json';
@@ -46,7 +45,7 @@ function getSorting(order, orderBy) {
 }
 
 const headRows = [
-  { id: 'id', numeric: true, disablePadding: true, label: 'id' },
+  { id: 'id', numeric: false, disablePadding: false, label: 'id' },
   { id: 'username', numeric: false, disablePadding: false, label: 'username' },
   { id: 'title', numeric: false, disablePadding: false, label: 'title' },
   { id: 'firstname', numeric: false, disablePadding: false, label: 'firstname' },
@@ -62,14 +61,11 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-
-        </TableCell>
         {headRows.map(row => (
           <TableCell
             key={row.id}
-            align={row.numeric ? 'right' : 'left'}
-            padding={row.disablePadding ? 'none' : 'default'}
+            // align={row.numeric ? 'right' : 'left'}
+            // padding={row.disablePadding ? 'none' : 'default'}
             sortDirection={orderBy === row.id ? order : false}
           >
             <TableSortLabel
@@ -89,7 +85,6 @@ function EnhancedTableHead(props) {
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -132,31 +127,17 @@ const EnhancedTableToolbar = props => {
       })}
     >
       <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography variant="h6" id="tableTitle">
-            Users
-          </Typography>
-        )}
+        <Typography variant="h6" id="tableTitle">
+          Users
+        </Typography>
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Tooltip title="Filter list">
+          <IconButton aria-label="Filter list">
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
       </div>
     </Toolbar>
   );
@@ -199,24 +180,8 @@ export default function EnhancedTable() {
   }
 
 
-  function handleClick(event, name) {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
+  function handleClick(event, id) {
+    console.log(id)
   }
 
   function handleChangePage(event, newPage) {
@@ -249,7 +214,6 @@ export default function EnhancedTable() {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              // onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
@@ -257,23 +221,20 @@ export default function EnhancedTable() {
               {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.name)}
+                      onClick={event => handleClick(event, row.id)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.id}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox"></TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.id}
-                      </TableCell>
+                      <TableCell>{row.id}</TableCell>
                       <TableCell>{row.username}</TableCell>
                       <TableCell>{row.title}</TableCell>
                       <TableCell>{row.firstname}</TableCell>

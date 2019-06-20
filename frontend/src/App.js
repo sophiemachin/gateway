@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import UsersList from './UsersListSortable.js'
+import UsersList from './UsersList.js'
 
 function App() {
   return (
