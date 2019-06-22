@@ -11,6 +11,7 @@ import List from './List.js'
 
 import usersConfig from './configs/Users.js'
 import patientsConfig from "./configs/Patients";
+import samplesConfig from "./configs/Samples.js";
 
 const theme = createMuiTheme({
   palette: {
@@ -38,7 +39,13 @@ const routing = (
           <Route path="/patients/" exact
                  render={(routeProps) => (
                    <List {...routeProps} tableData={patientsConfig}/>
+
+
           )} />
+          <Route path="/samples/" exact
+                 render={(routeProps) => (
+                   <List {...routeProps} tableData={samplesConfig}/>
+                 )} />
         </Switch>
       </Router>
     </MuiThemeProvider>
