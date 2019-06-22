@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
-
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 
+import App from './App';
+import List from './List.js'
+
+
+import users from './data/users.json';
+import patients from './data/patients.json';
 
 const theme = createMuiTheme({
   palette: {
@@ -17,6 +21,8 @@ const theme = createMuiTheme({
   },
 });
 
+
+
 const routing = (
   <div style={{'marginTop': '60px'}}>
     <MuiThemeProvider theme={theme}>
@@ -24,6 +30,15 @@ const routing = (
       <Router>
         <Switch>
           <Route path="/" exact component={App} />
+          <Route path="/users/" exact
+                 render={(routeProps) => (
+                   <List {...routeProps} rows={users} />
+                 )}
+          />
+          <Route path="/patients/" exact
+                 render={(routeProps) => (
+                  <List {...routeProps} rows={patients} />
+          )} />
         </Switch>
       </Router>
     </MuiThemeProvider>
