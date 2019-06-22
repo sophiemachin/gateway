@@ -125,11 +125,9 @@ export default function EnhancedTable(props) {
                       key={row.id}
                       selected={isItemSelected}
                     >
-                      <TableCell>{row.id}</TableCell>
-                      <TableCell>{row.username}</TableCell>
-                      <TableCell>{row.title}</TableCell>
-                      <TableCell>{row.firstname}</TableCell>
-                      <TableCell>{row.lastname}</TableCell>
+                      {headRows.map(col =>
+                          <TableCell>{row[col.id]}</TableCell>
+                      )}
                     </TableRow>
                   );
                 })}
