@@ -1,4 +1,3 @@
-
 import patients from '../data/patients.json';
 
 const patientsConfig = {
