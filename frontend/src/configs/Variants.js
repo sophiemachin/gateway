@@ -1,8 +1,12 @@
 import variants from '../data/variants.json';
 
 
-function filterData (userId, patientId) {
-  return variants
+
+function filterData (sampleId) {
+  return variants.filter(variant => {
+      if (variant.sampleId.toString() === sampleId.toString()) return variant;
+    }
+  )
 }
 
 const usersConfig = {
