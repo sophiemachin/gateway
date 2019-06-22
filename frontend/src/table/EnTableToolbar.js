@@ -2,9 +2,7 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import FilterListIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Input from "@material-ui/core/Input";
 
 const useToolbarStyles = makeStyles(theme => ({
   root: {
@@ -36,13 +34,7 @@ const EnhancedTableToolbar = props => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        <Tooltip title="Filter list">
-          <IconButton aria-label="Filter list">
-            <FilterListIcon>
-            <div />
-            </FilterListIcon>
-          </IconButton>
-        </Tooltip>
+        <Input />
       </div>
     </Toolbar>
   );
