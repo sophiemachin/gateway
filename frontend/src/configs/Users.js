@@ -1,5 +1,11 @@
 import users from '../data/users.json';
 
+
+function filterData (userId) {
+  return users
+}
+
+
 const usersConfig = {
   rows : users,
   headRows : [
@@ -10,6 +16,7 @@ const usersConfig = {
     { id: 'lastname', label: 'Last name' },
   ],
   title: 'Users',
+  filterData: filterData,
 };
 
 export default usersConfig

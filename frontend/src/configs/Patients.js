@@ -1,5 +1,13 @@
 import patients from '../data/patients.json';
 
+
+function filterData (userId) {
+  return patients.filter(patient => {
+    if (patient.userId.toString() === userId.toString()) return patient;
+  }
+)
+}
+
 const patientsConfig = {
   rows : patients,
   headRows : [
@@ -9,7 +17,8 @@ const patientsConfig = {
       { id: 'gender', label: 'Gender' },
       { id: 'dateOfBirth', label: 'Date of Birth' },
   ],
-  title: 'Patients'
+  title: userId => 'Patients for ' + userId,
+  filterData: filterData,
 };
 
 export default patientsConfig

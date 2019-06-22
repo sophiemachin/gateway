@@ -1,5 +1,10 @@
 import samples from '../data/samples.json';
 
+
+function filterData (userId, patientId) {
+  return samples
+}
+
 const samplesConfig = {
   rows : samples,
   headRows : [
@@ -9,7 +14,8 @@ const samplesConfig = {
     { id: 'date', label: 'date' },
     { id: 'quality', label: 'quality' },
   ],
-  title: 'Samples',
+  title: userId => 'Samples for ' + userId,
+  filterData: filterData,
 };
 
 export default samplesConfig

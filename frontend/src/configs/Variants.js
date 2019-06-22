@@ -1,5 +1,10 @@
 import variants from '../data/variants.json';
 
+
+function filterData (userId, patientId) {
+  return variants
+}
+
 const usersConfig = {
   rows : variants,
   headRows : [
@@ -12,7 +17,8 @@ const usersConfig = {
     { id: 'mutationType', label: 'mutationType' },
     { id: 'alleleFrequency', label: 'alleleFrequency' },
   ],
-  title: 'Variants',
+  title: userId => 'Variants for ' + userId,
+  filterData: filterData,
 };
 
 export default usersConfig
