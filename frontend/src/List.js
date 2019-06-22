@@ -11,8 +11,6 @@ import Switch from '@material-ui/core/Switch';
 import EnhancedTableHead from './EnTableHead.js'
 import EnhancedTableToolbar from './EnTableToolbar.js'
 
-import rows from './data/users.json';
-
 
 const headRows = [
   { id: 'id', numeric: false, disablePadding: false, label: 'id' },
@@ -62,7 +60,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTable(props) {
+  const { rows } = props;
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
