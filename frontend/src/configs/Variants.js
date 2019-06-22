@@ -1,4 +1,5 @@
 import variants from '../data/variants.json';
+import React from "react";
 
 
 
@@ -7,6 +8,10 @@ function filterData (sampleId) {
       if (variant.sampleId.toString() === sampleId.toString()) return variant;
     }
   )
+}
+
+function PageInfo () {
+  return <div> page info </div>
 }
 
 const usersConfig = {
@@ -24,6 +29,7 @@ const usersConfig = {
   title: userId => 'Variants for ' + userId,
   filterData: filterData,
   navDown: undefined,
+  PageInfo : PageInfo,
 };
 
 export default usersConfig

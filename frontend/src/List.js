@@ -11,7 +11,6 @@ import Switch from '@material-ui/core/Switch';
 import EnhancedTableHead from './table/EnTableHead.js'
 import EnhancedTableToolbar from './table/EnTableToolbar.js'
 
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -53,8 +52,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EnhancedTable(props) {
-  const { title, headRows, filterData, navDown} = props.tableData;
-  const {userId, patientId, sampleId, history } = props
+  const { title, headRows, filterData, navDown, PageInfo} = props.tableData;
+  const {userId, patientId, sampleId, history } = props;
 
   const rows = filterData(userId, patientId, sampleId);
 
@@ -90,8 +89,6 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   }
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -100,6 +97,11 @@ export default function EnhancedTable(props) {
                               userId={userId}
                               patientId={patientId}
                               sampleId={sampleId}
+        />
+        <PageInfo
+          userId={userId}
+          patientId={patientId}
+          sampleId={sampleId}
         />
         <div className={classes.tableWrapper}>
           <Table

@@ -2,6 +2,7 @@ import samples from '../data/samples.json';
 import patients from '../data/patients.json';
 import users from '../data/users.json';
 import {getDrName, getPatientName} from '../formattingHelpers.js'
+import React from "react";
 
 function filterData (patientId) {
   return samples.filter(sample => {
@@ -16,6 +17,7 @@ function getBreadCrumbs (userId, patientId) {
   return getDrName(user) + ' › ' + getPatientName(patient)
 }
 
+const PageInfo = () => <div> page info </div>
 
 const samplesConfig = {
   rows : samples,
@@ -27,7 +29,8 @@ const samplesConfig = {
   ],
   title: (userId, patientId) => getBreadCrumbs(userId, patientId) + ' › samples',
   filterData: filterData,
-  navDown: '/variants'
+  navDown: '/variants',
+  PageInfo : PageInfo,
 };
 
 export default samplesConfig
