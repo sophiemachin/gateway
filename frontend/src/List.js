@@ -56,8 +56,6 @@ export default function EnhancedTable(props) {
   const { title, headRows, filterData, navDown} = props.tableData;
   const {userId, patientId, sampleId, history } = props
 
-  console.log(props)
-
   const rows = filterData(userId, patientId, sampleId);
 
   const classes = useStyles();
@@ -97,7 +95,12 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headrows={headRows} title={title} userId={userId}/>
+        <EnhancedTableToolbar headrows={headRows}
+                              title={title}
+                              userId={userId}
+                              patientId={patientId}
+                              sampleId={sampleId}
+        />
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}

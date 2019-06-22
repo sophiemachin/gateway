@@ -1,5 +1,6 @@
 import patients from '../data/patients.json';
 import users from '../data/users.json';
+import {getDrName} from "../formattingHelpers";
 
 function filterData (userId) {
   return patients.filter(patient => {
@@ -10,7 +11,7 @@ function filterData (userId) {
 
 function getUserName (userId) {
   const user = users.filter(user => user.id.toString() === userId.toString())[0];
-  return user.title + ' ' +  user.firstname + ' ' + user.lastname
+  return getDrName(user)
 }
 
 const patientsConfig = {

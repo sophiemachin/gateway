@@ -24,15 +24,14 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles();
-  const { title, userId } = props;
-  console.log(props.pathname)
+  const { title, userId, patientId, sampleId } = props;
   return (
     <Toolbar
       className={classes.root}
     >
       <div className={classes.title}>
         <Typography variant="h6" id="tableTitle">
-          {title(userId)}
+          {title(userId, patientId, sampleId)}
         </Typography>
       </div>
       <div className={classes.spacer} />
