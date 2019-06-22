@@ -45,7 +45,7 @@ const routing = (
                          userId={routeProps.match.params.userId}
                          tableData={patientsConfig}/>
                  )} />
-          <Route path="/users/:userId/patients/:patiendId/samples/" exact
+          <Route path="/users/:userId/patients/:patientId/samples/" exact
                  render={(routeProps) => (
                    <List {...routeProps}
                          userId={routeProps.match.params.userId}
@@ -53,7 +53,7 @@ const routing = (
                          tableData={samplesConfig}
                    />
                  )} />
-          <Route path="/users/:userId/patients/:patiendId/samples/:sampleId/variants/" exact
+          <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
                  render={(routeProps) => (
                    <List {...routeProps}
                          userId={routeProps.match.params.userId}
