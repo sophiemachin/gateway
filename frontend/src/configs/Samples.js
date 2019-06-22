@@ -1,8 +1,11 @@
 import samples from '../data/samples.json';
 
 
-function filterData (userId, patientId) {
-  return samples
+function filterData (patientId) {
+  return samples.filter(sample => {
+      if (sample.patientId.toString() === patientId.toString()) return sample;
+    }
+  )
 }
 
 const samplesConfig = {
