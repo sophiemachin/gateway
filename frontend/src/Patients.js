@@ -5,10 +5,10 @@ const patientsConfig = {
   rows : patients,
   headRows : [
       { id: 'id', label: 'id' },
-      { id: 'username', label: 'username' },
-      { id: 'title', label: 'title' },
-      { id: 'firstname', label: 'firstname' },
-      { id: 'lastname', label: 'lastname' },
+      { id: 'firstname', label: 'First name' },
+      { id: 'lastname', label: 'Last name' },
+      { id: 'gender', label: 'Gender' },
+      { id: 'dateOfBirth', label: 'Date of Birth' },
   ],
   title: 'Patients'
 };
