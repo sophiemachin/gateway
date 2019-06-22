@@ -36,7 +36,8 @@ const routing = (
           <Route path="/" exact component={App} />
           <Route path="/users/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} tableData={usersConfig} />
+                   <List {...routeProps} tableData={usersConfig}
+                         ids={{}}/>
                  )}
           />
           <Route path="/users/:userId/patients/" exact
