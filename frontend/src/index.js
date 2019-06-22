@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 
-import {createMuiTheme, makeStyles, MuiThemeProvider} from '@material-ui/core/styles';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 
 
 const theme = createMuiTheme({
