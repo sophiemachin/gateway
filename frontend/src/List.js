@@ -53,9 +53,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function EnhancedTable(props) {
   const { title, headRows, filterData, navDown, PageInfo} = props.tableData;
-  const {userId, patientId, sampleId, history } = props;
+  const {ids, history } = props;
 
-  const rows = filterData(userId, patientId, sampleId);
+  const rows = filterData(ids);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -94,15 +94,14 @@ export default function EnhancedTable(props) {
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
                               title={title}
-                              userId={userId}
-                              patientId={patientId}
-                              sampleId={sampleId}
+                              ids={ids}
         />
         <PageInfo
-          userId={userId}
-          patientId={patientId}
-          sampleId={sampleId}
+          ids={ids}
         />
+        <div>userId:{ids.userId}</div>
+        <div>patientId:{ids.patientId}</div>
+        <div>sampleId:{ids.sampleId}</div>
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}

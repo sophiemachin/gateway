@@ -5,7 +5,7 @@ import React from "react";
 import {CardContent, makeStyles, Typography as T} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 
-function filterData (userId) {
+function filterData ({userId}) {
   return patients.filter(patient => {
     if (patient.userId.toString() === userId.toString()) return patient;
   }
@@ -16,7 +16,7 @@ function getUser(userId){
   return users.filter(user => user.id.toString() === userId.toString())[0];
 }
 
-function getUserName (userId) {
+function getUserName ({userId}) {
   return getDrName(getUser(userId))
 }
 
@@ -28,7 +28,8 @@ const useCardStyles = makeStyles(theme => ({
   },
 }));
 
-const PageInfo = ({userId}) => {
+const PageInfo = ({ids}) => {
+  const { userId }= ids;
   const user = getUser(userId);
   const classes = useCardStyles();
   return <Card className={classes.card}>
@@ -48,7 +49,7 @@ const patientsConfig = {
       { id: 'gender', label: 'Gender' },
       { id: 'dateOfBirth', label: 'Date of Birth' },
   ],
-  title: userId => getUserName(userId) + ' › patients',
+  title: ids => getUserName(ids) + ' › patients',
   filterData: filterData,
   navDown: '/samples',
   PageInfo : PageInfo,

@@ -42,23 +42,31 @@ const routing = (
           <Route path="/users/:userId/patients/" exact
                  render={(routeProps) => (
                    <List {...routeProps}
-                         userId={routeProps.match.params.userId}
+                         ids={{
+                           userId: routeProps.match.params.userId,
+                         }}
                          tableData={patientsConfig}/>
                  )} />
           <Route path="/users/:userId/patients/:patientId/samples/" exact
                  render={(routeProps) => (
                    <List {...routeProps}
-                         userId={routeProps.match.params.userId}
-                         patientId={routeProps.match.params.patientId}
+                     ids={{
+                       userId: routeProps.match.params.userId,
+                       patientId :routeProps.match.params.patientId,
+                     }}
+
                          tableData={samplesConfig}
                    />
                  )} />
           <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
                  render={(routeProps) => (
                    <List {...routeProps}
-                         userId={routeProps.match.params.userId}
-                         patientId={routeProps.match.params.patientId}
-                         sampleId={routeProps.match.params.sampleId}
+                         ids={{
+                           userId: routeProps.match.params.userId,
+                           patientId :routeProps.match.params.patientId,
+                           sampleId: routeProps.match.params.sampleId,
+                         }}
+
                          tableData={variantsConfig}
                    />
                  )} />

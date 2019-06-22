@@ -1,3 +1,5 @@
+import React from "react";
+
 export function getDrName(user) {
   return user.title + ' ' +  user.firstname + ' ' + user.lastname
 }
@@ -5,3 +7,4 @@ export function getDrName(user) {
 export function getPatientName(patient) {
   return patient.firstname + ' ' + patient.lastname
 }
+
