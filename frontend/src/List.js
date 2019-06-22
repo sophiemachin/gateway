@@ -12,14 +12,6 @@ import EnhancedTableHead from './EnTableHead.js'
 import EnhancedTableToolbar from './EnTableToolbar.js'
 
 
-const headRows = [
-  { id: 'id', numeric: false, disablePadding: false, label: 'id' },
-  { id: 'username', numeric: false, disablePadding: false, label: 'username' },
-  { id: 'title', numeric: false, disablePadding: false, label: 'title' },
-  { id: 'firstname', numeric: false, disablePadding: false, label: 'firstname' },
-  { id: 'lastname', numeric: false, disablePadding: false, label: 'lastname' },
-];
-
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -61,7 +53,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EnhancedTable(props) {
-  const { rows } = props;
+  const { title, headRows, rows } = props.tableData;
+
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -100,7 +93,7 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headrows={headRows} numSelected={selected.length} />
+        <EnhancedTableToolbar headrows={headRows} title={title} />
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}
