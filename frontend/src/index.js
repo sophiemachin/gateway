@@ -9,8 +9,8 @@ import App from './App';
 import List from './List.js'
 
 
-import users from './data/users.json';
-import patients from './data/patients.json';
+import usersConfig from './Users.js'
+import patientsConfig from "./Patients";
 
 const theme = createMuiTheme({
   palette: {
@@ -32,12 +32,12 @@ const routing = (
           <Route path="/" exact component={App} />
           <Route path="/users/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} rows={users} />
+                   <List {...routeProps} tableData={usersConfig} />
                  )}
           />
           <Route path="/patients/" exact
                  render={(routeProps) => (
-                  <List {...routeProps} rows={patients} />
+                   <List {...routeProps} tableData={patientsConfig}/>
           )} />
         </Switch>
       </Router>
