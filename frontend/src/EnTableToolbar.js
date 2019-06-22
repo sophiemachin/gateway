@@ -54,7 +54,9 @@ const EnhancedTableToolbar = props => {
       <div className={classes.actions}>
         <Tooltip title="Filter list">
           <IconButton aria-label="Filter list">
-            <FilterListIcon />
+            <FilterListIcon>
+            <div />
+            </FilterListIcon>
           </IconButton>
         </Tooltip>
       </div>
