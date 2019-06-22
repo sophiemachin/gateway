@@ -53,7 +53,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EnhancedTable(props) {
-  const { title, headRows, rows } = props.tableData;
+  const { title, headRows, filterData} = props.tableData;
+  const {userId, patientId, sampleId } = props
+
+  const rows = filterData(userId, patientId, sampleId);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
