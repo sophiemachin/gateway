@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import UsersList from './UsersList.js'
 
 function App() {
   return (
     <div className="App">
-      <UsersList/>
+      This is the home page
     </div>
   );
 }
