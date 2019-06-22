@@ -118,7 +118,7 @@ export default function EnhancedTable(props) {
                       key={row.id}
                     >
                       {headRows.map(col =>
-                          <TableCell>{row[col.id]}</TableCell>
+                          <TableCell key={col.id}>{row[col.id]}</TableCell>
                       )}
                     </TableRow>
                   );
