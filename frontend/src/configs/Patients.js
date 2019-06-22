@@ -1,11 +1,16 @@
 import patients from '../data/patients.json';
-
+import users from '../data/users.json';
 
 function filterData (userId) {
   return patients.filter(patient => {
     if (patient.userId.toString() === userId.toString()) return patient;
   }
 )
+}
+
+function getUserName (userId) {
+  const user = users.filter(user => user.id.toString() === userId.toString())[0];
+  return user.title + ' ' +  user.firstname + ' ' + user.lastname
 }
 
 const patientsConfig = {
@@ -17,7 +22,7 @@ const patientsConfig = {
       { id: 'gender', label: 'Gender' },
       { id: 'dateOfBirth', label: 'Date of Birth' },
   ],
-  title: userId => 'Patients for ' + userId,
+  title: userId => getUserName(userId) + ' › patients',
   filterData: filterData,
   navDown: '/samples'
 };

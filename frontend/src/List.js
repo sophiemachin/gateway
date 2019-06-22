@@ -97,7 +97,7 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headrows={headRows} title={title} />
+        <EnhancedTableToolbar headrows={headRows} title={title} userId={userId}/>
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}
