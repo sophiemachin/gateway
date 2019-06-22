@@ -52,9 +52,14 @@ const routing = (
                          tableData={samplesConfig}
                    />
                  )} />
-          <Route path="/variants/" exact
+          <Route path="/users/:userId/patients/:patiendId/samples/:sampleId/variants/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} tableData={variantsConfig}/>
+                   <List {...routeProps}
+                         userId={routeProps.match.params.userId}
+                         patientId={routeProps.match.params.patientId}
+                         sampleId={routeProps.match.params.sampleId}
+                         tableData={variantsConfig}
+                   />
                  )} />
         </Switch>
       </Router>
