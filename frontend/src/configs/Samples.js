@@ -20,11 +20,10 @@ function getBreadCrumbs (userId, patientId) {
 const samplesConfig = {
   rows : samples,
   headRows : [
-    { id: 'id', label: 'id' },
-    { id: 'patientId', label: 'patientId' },
-    { id: 'sampleType', label: 'sampleType' },
-    { id: 'date', label: 'date' },
-    { id: 'quality', label: 'quality' },
+    { id: 'id', label: 'Sample id' },
+    { id: 'sampleType', label: 'Sample type' },
+    { id: 'date', label: 'Date' },
+    { id: 'quality', label: 'Quality' },
   ],
   title: (userId, patientId) => getBreadCrumbs(userId, patientId) + ' › samples',
   filterData: filterData,
