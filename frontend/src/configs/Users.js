@@ -4,10 +4,10 @@ const usersConfig = {
   rows : users,
   headRows : [
     { id: 'id', label: 'id' },
-    { id: 'username', label: 'username' },
-    { id: 'title', label: 'title' },
-    { id: 'firstname', label: 'firstname' },
-    { id: 'lastname', label: 'lastname' },
+    { id: 'username', label: 'Username' },
+    { id: 'title', label: 'Title' },
+    { id: 'firstname', label: 'First Name' },
+    { id: 'lastname', label: 'Last name' },
   ],
   title: 'Users',
 };
