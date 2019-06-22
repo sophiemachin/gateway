@@ -19,6 +19,7 @@ const samplesConfig = {
   ],
   title: userId => 'Samples for ' + userId,
   filterData: filterData,
+  navDown: '/variants'
 };
 
 export default samplesConfig

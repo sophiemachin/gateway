@@ -23,6 +23,7 @@ const usersConfig = {
   ],
   title: userId => 'Variants for ' + userId,
   filterData: filterData,
+  navDown: undefined,
 };
 
 export default usersConfig

@@ -4,6 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
+import { createBrowserHistory } from 'history';
 
 import App from './App';
 import List from './List.js'
@@ -24,13 +25,13 @@ const theme = createMuiTheme({
   },
 });
 
-
+const history = createBrowserHistory();
 
 const routing = (
   <div style={{'marginTop': '60px'}}>
     <MuiThemeProvider theme={theme}>
 
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route path="/" exact component={App} />
           <Route path="/users/" exact
@@ -73,4 +74,4 @@ ReactDOM.render(routing, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

@@ -53,8 +53,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EnhancedTable(props) {
-  const { title, headRows, filterData} = props.tableData;
-  const {userId, patientId, sampleId } = props
+  const { title, headRows, filterData, navDown} = props.tableData;
+  const {userId, patientId, sampleId, history } = props
+
+  console.log(props)
 
   const rows = filterData(userId, patientId, sampleId);
 
@@ -73,7 +75,9 @@ export default function EnhancedTable(props) {
 
 
   function handleClick(event, id) {
-    console.log(id)
+    if (navDown !== undefined) {
+      history.push(props.location.pathname + '/' + id + navDown)
+    }
   }
 
   function handleChangePage(event, newPage) {

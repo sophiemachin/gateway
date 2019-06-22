@@ -15,8 +15,9 @@ const usersConfig = {
     { id: 'firstname', label: 'First Name' },
     { id: 'lastname', label: 'Last name' },
   ],
-  title: 'Users',
+  title: id => 'Users',
   filterData: filterData,
+  navDown: '/patients'
 };
 
 export default usersConfig

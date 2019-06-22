@@ -19,6 +19,7 @@ const patientsConfig = {
   ],
   title: userId => 'Patients for ' + userId,
   filterData: filterData,
+  navDown: '/samples'
 };
 
 export default patientsConfig
