@@ -38,13 +38,19 @@ const routing = (
                    <List {...routeProps} tableData={usersConfig} />
                  )}
           />
-          <Route path="/patients/" exact
+          <Route path="/users/:userId/patients/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} tableData={patientsConfig}/>
-                  )} />
-          <Route path="/samples/" exact
+                   <List {...routeProps}
+                         userId={routeProps.match.params.userId}
+                         tableData={patientsConfig}/>
+                 )} />
+          <Route path="/users/:userId/patients/:patiendId/samples/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} tableData={samplesConfig}/>
+                   <List {...routeProps}
+                         userId={routeProps.match.params.userId}
+                         patientId={routeProps.match.params.patientId}
+                         tableData={samplesConfig}
+                   />
                  )} />
           <Route path="/variants/" exact
                  render={(routeProps) => (
