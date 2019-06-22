@@ -1,5 +1,5 @@
 
-import patients from './data/patients.json';
+import patients from '../data/patients.json';
 
 const patientsConfig = {
   rows : patients,

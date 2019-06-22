@@ -8,8 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import EnhancedTableHead from './EnTableHead.js'
-import EnhancedTableToolbar from './EnTableToolbar.js'
+import EnhancedTableHead from './table/EnTableHead.js'
+import EnhancedTableToolbar from './table/EnTableToolbar.js'
 
 
 function desc(a, b, orderBy) {

@@ -9,8 +9,8 @@ import App from './App';
 import List from './List.js'
 
 
-import usersConfig from './Users.js'
-import patientsConfig from "./Patients";
+import usersConfig from './configs/Users.js'
+import patientsConfig from "./configs/Patients";
 
 const theme = createMuiTheme({
   palette: {
