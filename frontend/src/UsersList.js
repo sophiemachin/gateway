@@ -10,30 +10,40 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import EnhancedTableHead from './table/EnTableHead.js'
 import EnhancedTableToolbar from './table/EnTableToolbar.js'
+import {desc, stableSort, getSorting } from './tableHelper.js'
+import users from "./data/users";
+import Card from "@material-ui/core/Card";
+import {CardContent} from "@material-ui/core";
 
-function desc(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
+function filterData (rows, userId) {
+  return rows
 }
 
-function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map(el => el[0]);
-}
+const useCardStyles = makeStyles(theme => ({
+  card: {
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(1),
+    boxShadow: 'none',
+  },
+}));
 
-function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
+const PageInfo = () => {
+  const classes = useCardStyles();
+  return <Card className={classes.card}>
+    <CardContent>
+      Users: {users.length}
+    </CardContent>
+  </Card>
+};
+
+const headRows = [
+  { id: 'id', label: 'id' },
+  { id: 'username', label: 'Username' },
+  { id: 'title', label: 'Title' },
+  { id: 'firstname', label: 'First Name' },
+  { id: 'lastname', label: 'Last name' },
+];
+
 const useStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(3),
@@ -51,10 +61,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function EnhancedTable(props) {
-  const { title, headRows, filterData, navDown, PageInfo} = props.tableData;
   const {ids, history } = props;
 
-  const rows = filterData(ids);
+  const rows = filterData(users, ids);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -71,9 +80,7 @@ export default function EnhancedTable(props) {
 
 
   function handleClick(event, id) {
-    if (navDown !== undefined) {
-      history.push(props.location.pathname + '/' + id + navDown)
-    }
+    history.push(props.location.pathname + '/' + id + '/patients')
   }
 
   function handleChangePage(event, newPage) {
@@ -92,7 +99,7 @@ export default function EnhancedTable(props) {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
-                              title={title}
+                              title={'Admin page: Users'}
                               ids={ids}
         />
         <PageInfo
