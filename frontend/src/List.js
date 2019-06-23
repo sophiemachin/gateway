@@ -98,9 +98,6 @@ export default function EnhancedTable(props) {
         <PageInfo
           ids={ids}
         />
-        <div>userId:{ids.userId}</div>
-        <div>patientId:{ids.patientId}</div>
-        <div>sampleId:{ids.sampleId}</div>
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}
