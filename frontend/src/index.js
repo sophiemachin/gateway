@@ -54,7 +54,7 @@ const HeaderBar = () => {
         <img className={classes.logo} src={logo} alt="Logo"/>
       </a>
       <T className={classes.title}/>
-      <Button color="inherit">Login</Button>
+      <Button color="inherit" href='/'>Logout</Button>
     </Toolbar>
   </AppBar>
   </div>
@@ -72,32 +72,32 @@ const routing = (
           <Route path="/users/" exact
                  render={(routeProps) => (
                    <UsersList {...routeProps}
-                         ids={{}}/>
+                              ids={{}}/>
                  )}
           />
           <Route path="/users/:userId/patients/" exact
                  render={(routeProps) => (
                    <PatientsList {...routeProps}
-                         ids={{userId: routeProps.match.params.userId}}
+                                 ids={{userId: routeProps.match.params.userId}}
                    />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/" exact
                  render={(routeProps) => (
                    <SamplesList {...routeProps}
-                         ids={{
-                           userId: routeProps.match.params.userId,
-                           patientId: routeProps.match.params.patientId,
-                         }}
+                                ids={{
+                                  userId: routeProps.match.params.userId,
+                                  patientId: routeProps.match.params.patientId,
+                                }}
                    />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
                  render={(routeProps) => (
                    <VariantsList {...routeProps}
-                         ids={{
-                           userId: routeProps.match.params.userId,
-                           patientId: routeProps.match.params.patientId,
-                           sampleId: routeProps.match.params.sampleId,
-                         }}
+                                 ids={{
+                                   userId: routeProps.match.params.userId,
+                                   patientId: routeProps.match.params.patientId,
+                                   sampleId: routeProps.match.params.sampleId,
+                                 }}
                    />
                  )}/>
         </Switch>
