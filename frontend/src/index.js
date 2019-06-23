@@ -9,7 +9,6 @@ import { createBrowserHistory } from 'history';
 
 import App from './App';
 
-import variantsConfig from "./configs/Variants.js";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
