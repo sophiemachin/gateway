@@ -50,7 +50,9 @@ const HeaderBar = () => {
   return <div className={classes.root}>
   <AppBar position="static" >
     <Toolbar className={classes.toolbar}>
-      <img className={classes.logo} src={logo} alt="Logo" />
+      <a href='/'>
+        <img className={classes.logo} src={logo} alt="Logo"/>
+      </a>
       <T className={classes.title}/>
       <Button color="inherit">Login</Button>
     </Toolbar>
