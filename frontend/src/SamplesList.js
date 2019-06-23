@@ -69,10 +69,31 @@ function getIcon (cell) {
   return cell
 }
 
+
+function formatDateTime(d) {
+  const date = new Date(d);
+  let monthNames = [
+    "Jan", "Feb", "Mar",
+    "Apr", "May", "Jun", "Jul",
+    "Aug", "Sep", "Oct",
+    "Nov", "Dec"
+  ];
+
+  let day = date.getDate();
+  let monthIndex = date.getMonth();
+  let year = date.getFullYear();
+
+  let hours = date.getHours()
+  let mins = date.getMinutes()
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + hours + ':' + mins ;
+}
+
+
 const headRows = [
   { id: 'id', label: 'Sample id' },
   { id: 'sampleType', label: 'Sample type' },
-  { id: 'date', label: 'Date' },
+  { id: 'date', label: 'Date and time' },
   { id: 'quality', label: 'Quality' },
 ];
 
@@ -207,14 +228,19 @@ export default function EnhancedTable(props) {
                     >
                       {headRows.map(col => {
 
-                        const cell = row[col.id].toString().toLowerCase()
+                        let cell = row[col.id];
 
-                        // console.log(getIcon(cell))
+                        if (col.id === 'date') {
+                          cell = formatDateTime(cell)
+                        } else if (col.id === 'sampleType') {
+                          cell = getIcon(row[col.id].toString().toLowerCase())
+                        }
+
 
                           return <TableCell
                             key={col.id}
                             className={classes[cell]}
-                          >{getIcon(cell)}</TableCell>
+                          >{cell}</TableCell>
                       }
 
                       )}
