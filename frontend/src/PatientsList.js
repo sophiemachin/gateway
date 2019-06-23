@@ -47,6 +47,21 @@ const useCardStyles = makeStyles(theme => ({
   },
 }));
 
+function formatDate(d) {
+  const date = new Date(d);
+  let monthNames = [
+    "Jan", "Feb", "Mar",
+    "Apr", "May", "Jun", "Jul",
+    "Aug", "Sep", "Oct",
+    "Nov", "Dec"
+  ];
+
+  let day = date.getDate();
+  let monthIndex = date.getMonth();
+  let year = date.getFullYear();
+
+  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+}
 
 const PageInfo = ({ids}) => {
   const { userId }= ids;
@@ -167,8 +182,17 @@ export default function EnhancedTable(props) {
                       key={row.id}
                       className={classes.row}
                     >
-                      {headRows.map(col =>
-                          <TableCell key={col.id}>{row[col.id]}</TableCell>
+                      {headRows.map(col => {
+
+                        let cell = row[col.id]
+                        if (col.id === 'dateOfBirth') {
+                          cell = formatDate(cell)
+                        }
+
+                        return <TableCell key={col.id}>{cell}</TableCell>
+
+                      }
+
                       )}
                     </TableRow>
                   );
