@@ -18,12 +18,15 @@ import patients from "./data/patients";
 import samples from './data/samples.json';
 import {getDrName, getPatientName} from "./formattingHelpers";
 
-function filterData (rows, patientId) {
+function filterData (rows, patientId, searchText) {
   const filteredToPatient = samples.filter(sample => {
       if (sample.patientId.toString() === patientId.toString()) return sample;
     }
-  )
-  return filteredToPatient
+  );
+  return filteredToPatient.filter(sample => {
+    if (searchText === 'all' || searchText === '' ||searchText === undefined ) return true;
+    return sample.sampleType.toLowerCase().includes(searchText.toLowerCase())
+  })
 }
 
 function getBreadCrumbs ({userId, patientId}) {
@@ -83,9 +86,10 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable(props) {
   const {ids, history } = props;
 
-  const filtered = filterData(samples, ids.patientId);
+  const filtered = filterData(samples, ids.patientId, undefined);
 
   const classes = useStyles();
+  const [select, setSelect] = React.useState('');
   const [rows, setRows] = React.useState(filtered);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -121,13 +125,22 @@ export default function EnhancedTable(props) {
   }
 
 
+  function onSelectChange(searchText) {
+    setSelect(searchText)
+    setRows(filterData(filtered, ids.patientId, searchText))
+  }
+
+
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
                               title={getBreadCrumbs(ids) + ' › samples'}
                               ids={ids}
-                              onChange={onSearchChange}
+                              onChange={onSelectChange}
+                              type='select'
+                              select={select}
         />
         <PageInfo
           ids={ids}
@@ -136,6 +149,9 @@ export default function EnhancedTable(props) {
           dna={filtered.filter(s => s.sampleType==='CIRCULATING_DNA').length}
           blood={filtered.filter(s => s.sampleType==='BLOOD_NORMAL').length}
         />
+
+
+
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}
