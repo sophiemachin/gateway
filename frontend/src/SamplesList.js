@@ -51,14 +51,23 @@ const PageInfo = ({ids, samples, blood, dna, tumour}) => {
   const classes = useCardStyles();
   return <Card className={classes.card}>
     <CardContent>
-      <T variant='body1'>Samples: {samples}</T>
-      <T variant='body1'>Tumour: {tumour}</T>
-      <T variant='body1'>Normal blood: {blood}</T>
-      <T variant='body1'>Circulating dna: {dna}</T>
+      <T variant='body1'>Total samples: {samples}</T>
+      <T variant='body1'><i className="fas fa-plus" /><i className="fas fa-plus" style={{minWidth:'20px'}}/> Tumour: {tumour}</T>
+      <T variant='body1'><i className="fas fa-tint" style={{minWidth:'35px'}}/>  Normal blood: {blood}</T>
+      <T variant='body1'><i className="fas fa-dna" style={{minWidth:'35px'}}/>  Circulating dna: {dna}</T>
 
     </CardContent>
   </Card>
 };
+
+function getIcon (cell) {
+  if (cell === 'circulating_dna') return <i className="fas fa-dna"/>;
+  if (cell === 'blood_normal') return <i className="fas fa-tint"/>;
+  if (cell === 'tumour') return <div>
+    <i className="fas fa-plus"/><i className="fas fa-plus"/></div>;
+
+  return cell
+}
 
 const headRows = [
   { id: 'id', label: 'Sample id' },
@@ -84,6 +93,15 @@ const useStyles = makeStyles(theme => ({
   },
   row: {
     cursor: 'pointer',
+  },
+  high : {
+    color: 'green',
+  },
+  medium : {
+    color: 'orange',
+  },
+  low : {
+    color: 'red',
   }
 }));
 
@@ -176,6 +194,7 @@ export default function EnhancedTable(props) {
               {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
+                  // console.log(row)
 
                   return (
                     <TableRow
@@ -186,8 +205,18 @@ export default function EnhancedTable(props) {
                       key={row.id}
                       className={classes.row}
                     >
-                      {headRows.map(col =>
-                          <TableCell key={col.id}>{row[col.id]}</TableCell>
+                      {headRows.map(col => {
+
+                        const cell = row[col.id].toString().toLowerCase()
+
+                        // console.log(getIcon(cell))
+
+                          return <TableCell
+                            key={col.id}
+                            className={classes[cell]}
+                          >{getIcon(cell)}</TableCell>
+                      }
+
                       )}
                     </TableRow>
                   );
