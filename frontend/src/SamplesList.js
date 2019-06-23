@@ -10,7 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import EnhancedTableHead from './table/EnTableHead.js'
 import EnhancedTableToolbar from './table/EnTableToolbar.js'
-import {desc, stableSort, getSorting } from './tableHelper.js'
+import { stableSort, getSorting } from './tableHelper.js'
 import Card from "@material-ui/core/Card";
 import {CardContent, Typography as T} from "@material-ui/core";
 import users from "./data/users";

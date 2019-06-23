@@ -13,7 +13,7 @@ import EnhancedTableToolbar from './table/EnTableToolbar.js'
 import Card from "@material-ui/core/Card";
 import {CardContent, Typography as T} from "@material-ui/core";
 import patients from './data/patients.json';
-import {desc, stableSort, getSorting } from './tableHelper.js'
+import { stableSort, getSorting } from './tableHelper.js'
 import users from "./data/users";
 import {getDrName} from "./formattingHelpers";
 
@@ -27,6 +27,7 @@ function filterData (rows, userId) {
     }
   )
 }
+
 
 function getUserName ({userId}) {
   return getDrName(getUser(userId))
