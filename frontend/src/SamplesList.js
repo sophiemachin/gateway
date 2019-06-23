@@ -72,6 +72,9 @@ const useStyles = makeStyles(theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
+  row: {
+    cursor: 'pointer',
+  }
 }));
 
 export default function EnhancedTable(props) {
@@ -144,6 +147,7 @@ export default function EnhancedTable(props) {
                       role="checkbox"
                       tabIndex={-1}
                       key={row.id}
+                      className={classes.row}
                     >
                       {headRows.map(col =>
                           <TableCell key={col.id}>{row[col.id]}</TableCell>
