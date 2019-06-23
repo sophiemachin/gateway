@@ -35,14 +35,17 @@ function App(props) {
   const { history } = props
   const classes = useStyles();
 
+  const [error, setError] = React.useState(false);
   const [username, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   function onChangeUsername(username) {
+    setError(false)
     setUserName(username)
   }
 
   function onChangePassword(password) {
+    setError(false)
     setPassword(password)
   }
 
@@ -53,6 +56,8 @@ function App(props) {
       if (user.password === password) {
         history.push(`/users/${user.id}/patients`)
       }
+    } else {
+      setError(true)
     }
 
   }
@@ -70,17 +75,24 @@ function App(props) {
         <div className={classes.form}>
 
         <Input
+          error={error}
           className={classes.input}
           placeholder="Username"
           onChange={e => onChangeUsername(e.target.value)}
         />
         <Input
+          error={error}
           className={classes.input}
           placeholder="Password"
           onChange={e => onChangePassword(e.target.value)}
           type='password'
         />
-        <Button onClick={onClick} variant='outlined' className={classes.button}>
+        <Button
+          onClick={onClick}
+          variant='outlined'
+          className={classes.button}
+          disabled={error || username === '' || password ===''}
+        >
           Login
         </Button>
           <T variant='caption'>Note: This login is not secure - it is for demo pourposes only</T>
