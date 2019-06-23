@@ -22,7 +22,7 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles();
-  const { title, ids } = props;
+  const { title, ids, onChange} = props;
   return (
     <Toolbar
       className={classes.root}
@@ -34,7 +34,7 @@ const EnhancedTableToolbar = props => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        <Input placeholder="Search"/>
+        <Input placeholder="Search" onChange={e => onChange(e.target.value)}/>
       </div>
     </Toolbar>
   );
