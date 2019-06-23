@@ -3,7 +3,7 @@ import './App.css';
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import Card from "@material-ui/core/Card";
-import {makeStyles} from "@material-ui/core";
+import {makeStyles, Typography as T} from "@material-ui/core";
 import users from "./data/users";
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +23,10 @@ const useStyles = makeStyles(theme => ({
   },
   input : {
     margin: theme.spacing(2),
-  }
+  },
+  button : {
+    margin: theme.spacing(2),
+  },
 }));
 
 
@@ -77,7 +80,10 @@ function App(props) {
           onChange={e => onChangePassword(e.target.value)}
           type='password'
         />
-        <Button onClick={onClick}>Login</Button>
+        <Button onClick={onClick} variant='outlined' className={classes.button}>
+          Login
+        </Button>
+          <T variant='caption'>Note: This login is not secure - it is for demo pourposes only</T>
         </div>
       </Card>
       </div>
