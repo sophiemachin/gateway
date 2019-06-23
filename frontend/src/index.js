@@ -70,17 +70,13 @@ const routing = (
           <Route path="/users/" exact
                  render={(routeProps) => (
                    <UsersList {...routeProps}
-                              // tableData={usersConfig}
                          ids={{}}/>
                  )}
           />
           <Route path="/users/:userId/patients/" exact
                  render={(routeProps) => (
                    <PatientsList {...routeProps}
-                         ids={{
-                           userId: routeProps.match.params.userId,
-                         }}
-                         // tableData={patientsConfig}
+                         ids={{userId: routeProps.match.params.userId}}
                    />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/" exact
@@ -90,8 +86,6 @@ const routing = (
                            userId: routeProps.match.params.userId,
                            patientId: routeProps.match.params.patientId,
                          }}
-
-                         // tableData={samplesConfig}
                    />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
@@ -102,8 +96,6 @@ const routing = (
                            patientId: routeProps.match.params.patientId,
                            sampleId: routeProps.match.params.sampleId,
                          }}
-
-                         // tableData={variantsConfig}
                    />
                  )}/>
         </Switch>
