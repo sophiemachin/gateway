@@ -29,7 +29,7 @@ const EnhancedTableToolbar = props => {
     >
       <div className={classes.title}>
         <Typography variant="h6" id="tableTitle">
-          {title(ids)}
+          {title}
         </Typography>
       </div>
       <div className={classes.spacer} />
