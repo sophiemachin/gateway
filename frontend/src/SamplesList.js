@@ -19,10 +19,11 @@ import samples from './data/samples.json';
 import {getDrName, getPatientName} from "./formattingHelpers";
 
 function filterData (rows, patientId) {
-  return samples.filter(sample => {
+  const filteredToPatient = samples.filter(sample => {
       if (sample.patientId.toString() === patientId.toString()) return sample;
     }
   )
+  return filteredToPatient
 }
 
 function getBreadCrumbs ({userId, patientId}) {
@@ -39,13 +40,15 @@ const useCardStyles = makeStyles(theme => ({
   },
 }));
 
-const PageInfo = ({ids}) => {
+const PageInfo = ({ids, samples, blood, dna, tumour}) => {
   const classes = useCardStyles();
   return <Card className={classes.card}>
     <CardContent>
-      <T variant='body1'>Samples: </T>
-      <T>userId: {ids.userId}</T>
-      <T>patientId: {ids.patientId}</T>
+      <T variant='body1'>Samples: {samples}</T>
+      <T variant='body1'>Tumour: {tumour}</T>
+      <T variant='body1'>Normal blood: {blood}</T>
+      <T variant='body1'>Circulating dna: {dna}</T>
+
     </CardContent>
   </Card>
 };
@@ -80,9 +83,10 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable(props) {
   const {ids, history } = props;
 
-  const rows = filterData(samples, ids.patientId);
+  const filtered = filterData(samples, ids.patientId);
 
   const classes = useStyles();
+  const [rows, setRows] = React.useState(filtered);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
@@ -112,15 +116,25 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   }
 
+  function onSearchChange(searchText) {
+    setRows(filterData(filtered, ids.patientId, searchText))
+  }
+
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
                               title={getBreadCrumbs(ids) + ' › samples'}
                               ids={ids}
+                              onChange={onSearchChange}
         />
         <PageInfo
           ids={ids}
+          samples={filtered.length}
+          tumour={filtered.filter(s => s.sampleType==='TUMOUR').length}
+          dna={filtered.filter(s => s.sampleType==='CIRCULATING_DNA').length}
+          blood={filtered.filter(s => s.sampleType==='BLOOD_NORMAL').length}
         />
         <div className={classes.tableWrapper}>
           <Table
