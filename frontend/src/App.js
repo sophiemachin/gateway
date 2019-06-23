@@ -3,8 +3,34 @@ import './App.css';
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import Card from "@material-ui/core/Card";
+import {makeStyles} from "@material-ui/core";
+import users from "./data/users";
 
-function App() {
+const useStyles = makeStyles(theme => ({
+  root: {
+  },
+  card: {
+    maxWidth: '300px',
+    margin:'auto',
+    marginTop: theme.spacing(3),
+    padding: theme.spacing(3),
+  },
+  form: {
+    margin: theme.spacing(3),
+    display: 'flex',
+    flexDirection: 'column',
+    align: 'center',
+  },
+  input : {
+    margin: theme.spacing(2),
+  }
+}));
+
+
+function App(props) {
+
+  const { history } = props
+  const classes = useStyles();
 
   const [username, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -17,28 +43,44 @@ function App() {
     setPassword(password)
   }
 
+  //This is not a secure login form
+  function onClick() {
+    const user = users.filter(user => user.username.toLowerCase() === username.toLowerCase())[0];
+    if (user !== undefined) {
+      if (user.password === password) {
+        history.push(`/users/${user.id}/patients`)
+      }
+    }
+
+  }
+
+
   return (
-    <div className="App">
+    <div className="App" >
+      <div className={classes.root}>
 
-      This is the home page
-
-      <Card>
+      <Card className={classes.card}>
         <Button href='/#/users'>Go to admin page</Button>
       </Card>
 
-      <Card>
+      <Card className={classes.card}>
+        <div className={classes.form}>
 
         <Input
+          className={classes.input}
           placeholder="Username"
           onChange={e => onChangeUsername(e.target.value)}
         />
         <Input
+          className={classes.input}
           placeholder="Password"
           onChange={e => onChangePassword(e.target.value)}
           type='password'
         />
-        <Button href='/#/users'>Go to admin page</Button>
+        <Button onClick={onClick}>Login</Button>
+        </div>
       </Card>
+      </div>
     </div>
   );
 }
