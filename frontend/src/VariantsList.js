@@ -1,23 +1,23 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import EnhancedTableHead from './table/EnTableHead.js'
-import EnhancedTableToolbar from './table/EnTableToolbar.js'
+import {makeStyles, Typography as T} from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+
+
+const useCardStyles = makeStyles(theme => ({
+  card: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    marginTop: theme.spacing(5),
+  },
+}));
 
 
 
 export default function EnhancedTable() {
-
+  const classes = useCardStyles()
   return (
-    <div>
-      Not implemented
+    <div style={{display:'flex'}}>
+      <Card className={classes.card}><T>Not implemented</T></Card>
     </div>
   );
 }
