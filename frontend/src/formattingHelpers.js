@@ -1,4 +1,3 @@
-import React from "react";
 
 export function getDrName(user) {
   return user.title + ' ' +  user.firstname + ' ' + user.lastname

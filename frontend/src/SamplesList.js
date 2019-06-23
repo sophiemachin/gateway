@@ -124,10 +124,6 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   }
 
-  function onSearchChange(searchText) {
-    setRows(filterData(filtered, ids.patientId, searchText))
-  }
-
 
   function onSelectChange(searchText) {
     setSelect(searchText)

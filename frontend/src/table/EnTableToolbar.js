@@ -30,7 +30,7 @@ const useToolbarStyles = makeStyles(theme => ({
 
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles();
-  const { title, ids, onChange, type, select} = props;
+  const { title, onChange, type, select} = props;
 
   let control = <Input placeholder="Search" onChange={e => onChange(e.target.value)}/>
   if (type ==='select') {
