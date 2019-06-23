@@ -113,7 +113,7 @@ export default function EnhancedTable(props) {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
-                              title={'Admin page: Users'}
+                              title={'Admin page'}
                               ids={ids}
                               onChange={onSearchChange}
         />
