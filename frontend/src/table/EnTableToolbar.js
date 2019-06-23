@@ -34,7 +34,7 @@ const EnhancedTableToolbar = props => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        <Input />
+        <Input placeholder="Search"/>
       </div>
     </Toolbar>
   );
