@@ -56,9 +56,8 @@ function App(props) {
       if (user.password === password) {
         history.push(`/users/${user.id}/patients`)
       }
-    } else {
-      setError(true)
     }
+    setError(true)
 
   }
 
