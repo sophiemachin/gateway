@@ -21,9 +21,15 @@ function getUser(userId){
   return users.filter(user => user.id.toString() === userId.toString())[0];
 }
 
-function filterData (rows, userId) {
-  return patients.filter(patient => {
-      if (patient.userId.toString() === userId.toString()) return patient;
+
+function filterData (rows, userId, searchText) {
+  const filteredToUser = rows.filter(patient => {
+    if (patient.userId.toString() === userId.toString()) return patient;
+  })
+  return filteredToUser.filter(patient  => {
+      if (searchText === undefined) return true;
+      const toSearch = patient.username + ' ' + patient.firstname + ' ' + patient.lastname;
+      return toSearch.toLowerCase().includes(searchText.toLowerCase())
     }
   )
 }
@@ -82,9 +88,10 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable(props) {
   const {ids, history } = props;
 
-  const rows = filterData(patients, ids.userId);
+  const filteredToUser = filterData(patients, ids.userId, undefined);
 
   const classes = useStyles();
+  const [rows, setRows] = React.useState(filteredToUser);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
@@ -114,12 +121,17 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   }
 
+  function onSearchChange(searchText) {
+    setRows(filterData(filteredToUser, ids.userId, searchText))
+  }
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
                               title={getUserName(ids) + ' › patients'}
                               ids={ids}
+                              onChange={onSearchChange}
         />
         <PageInfo
           ids={ids}
