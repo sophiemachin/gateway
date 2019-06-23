@@ -17,6 +17,8 @@ import PatientsList from "./PatientsList";
 import SamplesList from "./SamplesList";
 import VariantsList from "./VariantsList";
 
+import logo from './logo.png'
+
 
 const theme = createMuiTheme({
   palette: {
@@ -35,7 +37,10 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   toolbar: {
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+  },
+  logo :{
+    maxHeight: '40px',
   }
 }));
 
@@ -45,9 +50,8 @@ const HeaderBar = () => {
   return <div className={classes.root}>
   <AppBar position="static" >
     <Toolbar className={classes.toolbar}>
-      <T variant="h6" className={classes.title}>
-        Gateway
-      </T>
+      <img className={classes.logo} src={logo} alt="Logo" />
+      <T className={classes.title}/>
       <Button color="inherit">Login</Button>
     </Toolbar>
   </AppBar>
