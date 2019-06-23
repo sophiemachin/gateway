@@ -15,8 +15,13 @@ import users from "./data/users";
 import Card from "@material-ui/core/Card";
 import {CardContent} from "@material-ui/core";
 
-function filterData (rows, userId) {
-  return rows
+function filterData (rows, userId, searchText ) {
+  return rows.filter(user  => {
+    if (searchText === undefined) return true;
+    const toSearch = user.username + ' ' + user.firstname + ' ' + user.lastname;
+    return toSearch.toLowerCase().includes(searchText.toLowerCase())
+    }
+  )
 }
 
 const useCardStyles = makeStyles(theme => ({
@@ -63,7 +68,9 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable(props) {
   const {ids, history } = props;
 
-  const rows = filterData(users, ids);
+  const filtered = filterData(users, ids);
+
+  const [rows, setRows] = React.useState(filtered);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
@@ -95,12 +102,17 @@ export default function EnhancedTable(props) {
     setDense(event.target.checked);
   }
 
+  function onSearchChange(searchText) {
+    setRows(filterData(users, ids, searchText))
+  }
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
                               title={'Admin page: Users'}
                               ids={ids}
+                              onChange={onSearchChange}
         />
         <PageInfo
           ids={ids}
