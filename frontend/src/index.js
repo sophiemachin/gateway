@@ -8,16 +8,15 @@ import { Typography as T } from '@material-ui/core';
 import { createBrowserHistory } from 'history';
 
 import App from './App';
-import List from './List.js'
 
-
-import usersConfig from './configs/Users.js'
-import patientsConfig from "./configs/Patients";
-import samplesConfig from "./configs/Samples.js";
 import variantsConfig from "./configs/Variants.js";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
+import UsersList from "./UsersList";
+import PatientsList from "./PatientsList";
+import SamplesList from "./SamplesList";
+import VariantsList from "./VariantsList";
 
 
 const theme = createMuiTheme({
@@ -67,39 +66,41 @@ const routing = (
           <Route path="/" exact component={App}/>
           <Route path="/users/" exact
                  render={(routeProps) => (
-                   <List {...routeProps} tableData={usersConfig}
+                   <UsersList {...routeProps}
+                              // tableData={usersConfig}
                          ids={{}}/>
                  )}
           />
           <Route path="/users/:userId/patients/" exact
                  render={(routeProps) => (
-                   <List {...routeProps}
+                   <PatientsList {...routeProps}
                          ids={{
                            userId: routeProps.match.params.userId,
                          }}
-                         tableData={patientsConfig}/>
+                         // tableData={patientsConfig}
+                   />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/" exact
                  render={(routeProps) => (
-                   <List {...routeProps}
+                   <SamplesList {...routeProps}
                          ids={{
                            userId: routeProps.match.params.userId,
                            patientId: routeProps.match.params.patientId,
                          }}
 
-                         tableData={samplesConfig}
+                         // tableData={samplesConfig}
                    />
                  )}/>
           <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
                  render={(routeProps) => (
-                   <List {...routeProps}
+                   <VariantsList {...routeProps}
                          ids={{
                            userId: routeProps.match.params.userId,
                            patientId: routeProps.match.params.patientId,
                            sampleId: routeProps.match.params.sampleId,
                          }}
 
-                         tableData={variantsConfig}
+                         // tableData={variantsConfig}
                    />
                  )}/>
         </Switch>
