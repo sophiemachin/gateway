@@ -52,7 +52,7 @@ const PageInfo = ({ids, samples, blood, dna, tumour}) => {
   return <Card className={classes.card}>
     <CardContent>
       <T variant='body1'>Total samples: {samples}</T>
-      <T variant='body1'><i className="fas fa-plus" /><i className="fas fa-plus" style={{minWidth:'20px'}}/> Tumour: {tumour}</T>
+      <T variant='body1'><i className="fas fa-plus" style={{minWidth:'16px'}}/><i className="fas fa-plus" style={{minWidth:'20px'}}/> Tumour: {tumour}</T>
       <T variant='body1'><i className="fas fa-tint" style={{minWidth:'35px'}}/>  Normal blood: {blood}</T>
       <T variant='body1'><i className="fas fa-dna" style={{minWidth:'35px'}}/>  Circulating dna: {dna}</T>
 
@@ -64,7 +64,7 @@ function getIcon (cell) {
   if (cell === 'circulating_dna') return <i className="fas fa-dna"/>;
   if (cell === 'blood_normal') return <i className="fas fa-tint"/>;
   if (cell === 'tumour') return <div>
-    <i className="fas fa-plus"/><i className="fas fa-plus"/></div>;
+    <i className="fas fa-plus"style={{minWidth:'16px'}}/><i className="fas fa-plus"/></div>;
 
   return cell
 }
