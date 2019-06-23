@@ -35,7 +35,7 @@ function filterData (rows, userId, searchText) {
 }
 
 
-function getUserName ({userId}) {
+function getUserName (userId) {
   return getDrName(getUser(userId))
 }
 
@@ -131,10 +131,11 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headrows={headRows}
-                              title={getUserName(ids) + ' › patients'}
-                              ids={ids}
-                              onChange={onSearchChange}
+        <EnhancedTableToolbar
+          headrows={headRows}
+          title={getUserName(ids.userId)}
+          ids={ids}
+          onChange={onSearchChange}
         />
         <PageInfo
           ids={ids}

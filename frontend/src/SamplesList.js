@@ -17,6 +17,7 @@ import users from "./data/users";
 import patients from "./data/patients";
 import samples from './data/samples.json';
 import {getDrName, getPatientName} from "./formattingHelpers";
+import Link from "@material-ui/core/Link";
 
 function filterData (rows, patientId, searchText) {
   const filteredToPatient = samples.filter(sample => {
@@ -29,10 +30,13 @@ function filterData (rows, patientId, searchText) {
   })
 }
 
-function getBreadCrumbs ({userId, patientId}) {
-  const user = users.filter(user => user.id.toString() === userId.toString())[0];
-  const patient = patients.filter(patient => patient.id.toString() === patientId.toString())[0];
-  return getDrName(user) + ' › ' + getPatientName(patient)
+
+function getUser(userId){
+  return users.filter(user => user.id.toString() === userId.toString())[0];
+}
+
+function getPatient(patientId){
+  return patients.filter(p => p.id.toString() === patientId.toString())[0];
 }
 
 const useCardStyles = makeStyles(theme => ({
@@ -135,12 +139,19 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar headrows={headRows}
-                              title={getBreadCrumbs(ids) + ' › samples'}
-                              ids={ids}
-                              onChange={onSelectChange}
-                              type='select'
-                              select={select}
+        <EnhancedTableToolbar
+          headrows={headRows}
+          title={
+            <div>
+            <Link href={`/#/users/${ids.userId}/patients`}>
+              {getDrName(getUser(ids.userId))}
+            </Link> › {getPatientName(getPatient(ids.patientId))}
+            </div>
+          }
+          ids={ids}
+          onChange={onSelectChange}
+          type='select'
+          select={select}
         />
         <PageInfo
           ids={ids}
