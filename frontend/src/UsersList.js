@@ -14,6 +14,7 @@ import { stableSort, getSorting } from './tableHelper.js'
 import users from "./data/users";
 import Card from "@material-ui/core/Card";
 import {CardContent} from "@material-ui/core";
+import HeaderBar from "./HeaderBar";
 
 function filterData (rows, userId, searchText ) {
   return rows.filter(user  => {
@@ -110,6 +111,8 @@ export default function EnhancedTable(props) {
   }
 
   return (
+    <div>
+      <HeaderBar history={history} />
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
@@ -176,6 +179,7 @@ export default function EnhancedTable(props) {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+    </div>
     </div>
   );
 }

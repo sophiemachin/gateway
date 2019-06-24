@@ -18,6 +18,7 @@ import patients from "./data/patients";
 import samples from './data/samples.json';
 import {getDrName, getPatientName} from "./formattingHelpers";
 import Link from "@material-ui/core/Link";
+import HeaderBar from "./HeaderBar";
 
 function filterData (rows, patientId, searchText) {
   const filteredToPatient = samples.filter(sample => {
@@ -172,7 +173,10 @@ export default function EnhancedTable(props) {
 
 
   return (
+    <div>
+    <HeaderBar history={history} />
     <div className={classes.root}>
+
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
           headrows={headRows}
@@ -270,6 +274,7 @@ export default function EnhancedTable(props) {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+    </div>
     </div>
   );
 }

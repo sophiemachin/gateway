@@ -6,6 +6,7 @@ import {getDrName, getPatientName} from "./formattingHelpers";
 
 import users from "./data/users";
 import patients from "./data/patients";
+import HeaderBar from "./HeaderBar";
 
 
 function getUser(userId){
@@ -35,9 +36,11 @@ const useCardStyles = makeStyles(theme => ({
 
 
 export default function EnhancedTable(props) {
-  const { ids } = props
+  const { ids, history } = props
   const classes = useCardStyles()
   return (
+    <div>
+    <HeaderBar history={history} />
     <div className={classes.root}>
 
 
@@ -56,6 +59,7 @@ export default function EnhancedTable(props) {
           <T>Not implemented</T>
         </div>
       </Card>
+    </div>
     </div>
   );
 }

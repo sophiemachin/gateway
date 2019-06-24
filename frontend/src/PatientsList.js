@@ -16,6 +16,7 @@ import patients from './data/patients.json';
 import { stableSort, getSorting } from './tableHelper.js'
 import users from "./data/users";
 import {getDrName} from "./formattingHelpers";
+import HeaderBar from "./HeaderBar";
 
 function getUser(userId){
   return users.filter(user => user.id.toString() === userId.toString())[0];
@@ -144,6 +145,8 @@ export default function EnhancedTable(props) {
   }
 
   return (
+    <div>
+      <HeaderBar history={history} />
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
@@ -220,6 +223,7 @@ export default function EnhancedTable(props) {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
+    </div>
     </div>
   );
 }

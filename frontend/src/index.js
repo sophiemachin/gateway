@@ -3,21 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
-import {createMuiTheme, MuiThemeProvider, makeStyles} from '@material-ui/core/styles';
-import { Typography as T } from '@material-ui/core';
+import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import { createBrowserHistory } from 'history';
 
 import App from './App';
 
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
 import UsersList from "./UsersList";
 import PatientsList from "./PatientsList";
 import SamplesList from "./SamplesList";
 import VariantsList from "./VariantsList";
 
-import logo from './logo.png'
 
 
 const theme = createMuiTheme({
@@ -29,44 +24,14 @@ const theme = createMuiTheme({
   },
 });
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-  toolbar: {
-    backgroundColor: 'black',
-  },
-  logo :{
-    maxHeight: '40px',
-  }
-}));
 
-
-const HeaderBar = () => {
-  const classes=useStyles();
-  return <div className={classes.root}>
-  <AppBar position="static" >
-    <Toolbar className={classes.toolbar}>
-      <a href='/'>
-        Homepage logo
-        {/*<img className={classes.logo} src={logo} alt="Logo"/>*/}
-      </a>
-      <T className={classes.title}/>
-      <Button color="inherit" href='/'>Logout</Button>
-    </Toolbar>
-  </AppBar>
-  </div>
-};
 
 const history = createBrowserHistory();
 
 const routing = (
   <div>
     <MuiThemeProvider theme={theme}>
-      <HeaderBar />
+
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={App}/>

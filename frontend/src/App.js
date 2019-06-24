@@ -5,6 +5,7 @@ import Input from "@material-ui/core/Input";
 import Card from "@material-ui/core/Card";
 import {makeStyles, Typography as T} from "@material-ui/core";
 import users from "./data/users";
+import HeaderBar from './HeaderBar.js'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,13 +62,18 @@ function App(props) {
 
   }
 
+  function onClickAdmin() {
+    history.push(`/users`)
+  }
+
 
   return (
     <div className="App" >
+      <HeaderBar history={history} />
       <div className={classes.root}>
 
       <Card className={classes.card}>
-        <Button href='/#/users'>Go to admin page</Button>
+        <Button onClick={onClickAdmin}>Go to admin page</Button>
       </Card>
 
       <Card className={classes.card}>
