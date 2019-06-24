@@ -47,9 +47,11 @@ export default function EnhancedTable(props) {
       <Card className={classes.card}>
         <T variant="h6">
         <div>
-          <Link href={`/#/users/${ids.userId}/patients`}>
+          <Link onClick={() => history.push(`/users/${ids.userId}/patients`)}
+                style={{cursor:'pointer'}}>
             {getDrName(getUser(ids.userId))}
-          </Link> › <Link href={`/#/users/${ids.userId}/patients/${ids.patientId}/samples`}>
+          </Link> › <Link onClick={() => history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples`)}
+                          style={{cursor:'pointer'}}>
           {getPatientName(getPatient(ids.patientId))}
         </Link> › variants
         </div>

@@ -15,7 +15,7 @@ import {CardContent, Typography as T} from "@material-ui/core";
 import patients from './data/patients.json';
 import { stableSort, getSorting } from './tableHelper.js'
 import users from "./data/users";
-import {getDrName} from "./formattingHelpers";
+import { getDrName } from './formattingHelpers'
 import HeaderBar from "./HeaderBar";
 
 function getUser(userId){

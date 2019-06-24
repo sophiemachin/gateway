@@ -182,7 +182,8 @@ export default function EnhancedTable(props) {
           headrows={headRows}
           title={
             <div>
-            <Link href={`/#/users/${ids.userId}/patients`}>
+            <Link onClick={() => history.push(`/users/${ids.userId}/patients`)}
+                  style={{cursor:'pointer'}}>
               {getDrName(getUser(ids.userId))}
             </Link> › {getPatientName(getPatient(ids.patientId))}
             </div>

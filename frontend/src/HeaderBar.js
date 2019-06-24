@@ -33,7 +33,7 @@ const HeaderBar = (props) => {
     <AppBar position="static" >
       <Toolbar className={classes.toolbar}>
         <div onClick={onClickHome}>
-          <img className={classes.logo} src={logo} alt="Logo" />
+          <img className={classes.logo} src={logo} alt="Logo" style={{cursor:'pointer'}}/>
         </div>
         <T className={classes.title}/>
         <Button color="inherit" onClick={onClickHome}>Logout</Button>
