@@ -51,7 +51,8 @@ const HeaderBar = () => {
   <AppBar position="static" >
     <Toolbar className={classes.toolbar}>
       <a href='/'>
-        <img className={classes.logo} src={logo} alt="Logo"/>
+        Homepage logo
+        {/*<img className={classes.logo} src={logo} alt="Logo"/>*/}
       </a>
       <T className={classes.title}/>
       <Button color="inherit" href='/'>Logout</Button>
