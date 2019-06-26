@@ -84,8 +84,8 @@ function formatDateTime(d) {
   let monthIndex = date.getMonth();
   let year = date.getFullYear();
 
-  let hours = date.getHours()
-  let mins = date.getMinutes()
+  let hours = ((date.getHours() < 10) ? '0':'') +  date.getHours()
+  let mins = ((date.getMinutes() < 10) ? '0':'') + date.getMinutes()
 
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + hours + ':' + mins ;
 }
