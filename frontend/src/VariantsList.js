@@ -116,6 +116,11 @@ const useStyles = makeStyles(theme => ({
   },
   low : {
     color: 'red',
+  },
+  noVariants : {
+    paddingBottom: theme.spacing(5),
+    paddingTop: theme.spacing(5),
+    paddingLeft: theme.spacing(5),
   }
 }));
 
@@ -132,8 +137,6 @@ export default function EnhancedTable(props) {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-   const sampleType = getSample(ids.sampleId).sampleType
 
   function handleRequestSort(event, property) {
     const isDesc = orderBy === property && order === 'desc';
@@ -159,7 +162,36 @@ export default function EnhancedTable(props) {
     setRows(filterData(filtered, ids.sampleId, searchText))
   }
 
-  console.log(ids.sampleId)
+
+  if (filtered.length === 0) {
+    return <div>
+      <HeaderBar history={history}/>
+        <div className={classes.root}>
+          <Paper className={classes.paper}>
+            <EnhancedTableToolbar
+              headrows={headRows}
+              title={
+                <div>
+                  <Link onClick={() =>
+                    history.push(`/users/${ids.userId}/patients`)}
+                        style={{cursor:'pointer'}}>
+                    {getDrName(getUser(ids.userId))}
+                  </Link> › <Link onClick={() =>
+                  history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples`)}
+                                  style={{cursor:'pointer'}}>
+                  {getPatientName(getPatient(ids.patientId))}
+                </Link> › Sample {ids.sampleId} ({getSampleType(getSample(ids.sampleId).sampleType)}) variants
+                </div>
+              }
+              ids={ids}
+              onChange={onSearchChange}
+              select={select}
+            />
+            <T className={classes.noVariants}>This sample has no variants</T>
+          </Paper>
+        </div>
+      </div>
+    }
 
   return (
     <div>
@@ -167,6 +199,7 @@ export default function EnhancedTable(props) {
     <div className={classes.root}>
 
       <Paper className={classes.paper}>
+
         <EnhancedTableToolbar
           headrows={headRows}
           title={
@@ -179,10 +212,7 @@ export default function EnhancedTable(props) {
               history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples`)}
                               style={{cursor:'pointer'}}>
               {getPatientName(getPatient(ids.patientId))}
-            </Link> › <Link onClick={() =>
-              history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples/${ids.sampleId}/variants`)}
-                            style={{cursor:'pointer'}}> {getSampleType(getSample(ids.sampleId).sampleType)} </Link>
-              › variants
+            </Link> › Sample {ids.sampleId} ({getSampleType(getSample(ids.sampleId).sampleType)}) variants
             </div>
           }
           ids={ids}
