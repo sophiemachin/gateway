@@ -151,7 +151,7 @@ export default function EnhancedTable(props) {
       <Paper className={classes.paper}>
         <EnhancedTableToolbar
           headrows={headRows}
-          title={getUserName(ids.userId)}
+          title={'Welcome ' + getUserName(ids.userId)}
           ids={ids}
           onChange={onSearchChange}
         />

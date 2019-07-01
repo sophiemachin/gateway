@@ -37,7 +37,7 @@ const PageInfo = () => {
   const classes = useCardStyles();
   return <Card className={classes.card}>
     <CardContent>
-      Users: {users.length}
+      Doctors: {users.length}
     </CardContent>
   </Card>
 };
@@ -116,7 +116,7 @@ export default function EnhancedTable(props) {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar headrows={headRows}
-                              title={'Admin page'}
+                              title={'Admin page: choose a doctor to log in as'}
                               ids={ids}
                               onChange={onSearchChange}
         />

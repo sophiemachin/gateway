@@ -72,9 +72,6 @@ function App(props) {
       <HeaderBar history={history} />
       <div className={classes.root}>
 
-      <Card className={classes.card}>
-        <Button onClick={onClickAdmin}>Go to admin page</Button>
-      </Card>
 
       <Card className={classes.card}>
         <div className={classes.form}>
@@ -103,6 +100,12 @@ function App(props) {
           <T variant='caption'>Note: This login is not secure - it is for demo pourposes only</T>
         </div>
       </Card>
+
+      <Card className={classes.card}>
+        <T variant='body1'>Demo only: choose which doctor to log in as</T>
+        <Button onClick={onClickAdmin} variant='outlined'>Go to admin page</Button>
+      </Card>
+
       </div>
     </div>
   );
