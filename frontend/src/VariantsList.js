@@ -92,12 +92,24 @@ function convertDec(v) {
   return Math.round(v * 100) / 100
 }
 
+const mutationTypes = {
+  'benign'         : 'Benign',
+  'moderate_risk'  : 'Moderate',
+  'severe'         : 'Severe',
+}
+
+function formatMutation (_cell) {
+  const cell = _cell.toString().toLowerCase()
+  if (mutationTypes[cell] !== undefined ) return mutationTypes[cell]
+  return cell
+}
+
 const headRows = [
   { id: 'reference_base', label: 'Reference base' },
   { id: 'alternativeBase', label: 'Alternative base' },
   { id: 'geneName', label: 'Gene name' },
   { id: 'position', label: 'Position' },
-  { id: 'mutationType', label: 'Mutation Type' },
+  { id: 'mutationType', label: 'Mutation Type', formatter: formatMutation},
   { id: 'alleleFrequency', label: 'Allele Frequency', formatter : convertDec},
 
 ];
