@@ -226,8 +226,6 @@ export default function EnhancedTable(props) {
               {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  // console.log(row)
-
                   return (
                     <TableRow
                       hover
@@ -236,6 +234,7 @@ export default function EnhancedTable(props) {
                       tabIndex={-1}
                       key={row.id}
                       className={classes.row}
+
                     >
                       {headRows.map(col => {
 
