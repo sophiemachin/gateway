@@ -61,12 +61,14 @@ const PageInfo = ({ids, samples, blood, dna, tumour}) => {
   </Card>
 };
 
-function getIcon (cell) {
+function getIcon (_cell) {
+  const cell = _cell.toString().toLowerCase()
   if (cell === 'circulating_dna') return <i className="fas fa-dna"/>;
   if (cell === 'blood_normal') return <i className="fas fa-tint"/>;
   if (cell === 'tumour') return <div>
-    <i className="fas fa-plus"style={{minWidth:'16px'}}/><i className="fas fa-plus"/></div>;
-
+    <i className="fas fa-plus" style={{minWidth:'16px'}}/>
+    <i className="fas fa-plus"/>
+  </div>;
   return cell
 }
 
@@ -90,11 +92,15 @@ function formatDateTime(d) {
   return day + ' ' + monthNames[monthIndex] + ' ' + year + ' ' + hours + ':' + mins ;
 }
 
+export function formatCell (v, formatter, row) {
+  if (formatter === undefined) return v
+  return formatter(v, row)
+}
 
 const headRows = [
   { id: 'id', label: 'Sample id' },
-  { id: 'sampleType', label: 'Sample type' },
-  { id: 'date', label: 'Date and time' },
+  { id: 'sampleType', label: 'Sample type', formatter : getIcon },
+  { id: 'date', label: 'Date and time', formatter : formatDateTime},
   { id: 'quality', label: 'Quality' },
 ];
 
@@ -234,18 +240,12 @@ export default function EnhancedTable(props) {
                       {headRows.map(col => {
 
                         let cell = row[col.id];
-
-                        if (col.id === 'date') {
-                          cell = formatDateTime(cell)
-                        } else if (col.id === 'sampleType') {
-                          cell = getIcon(row[col.id].toString().toLowerCase())
-                        }
-
-
                           return <TableCell
                             key={col.id}
                             className={classes[cell]}
-                          >{cell}</TableCell>
+                          >
+                            {formatCell(row[col.id], col.formatter, row)}
+                        </TableCell>
                       }
 
                       )}
