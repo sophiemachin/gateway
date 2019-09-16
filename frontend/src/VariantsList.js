@@ -54,6 +54,11 @@ function filterData (rows, sampleId, searchText) {
 }
 
 
+export function formatCell (v, formatter, row) {
+  if (formatter === undefined) return v
+  return formatter(v, row)
+}
+
 const useCardStyles = makeStyles(theme => ({
   root: {
     margin: theme.spacing(3),
@@ -83,13 +88,17 @@ const PageInfo = ({ids, variants, severe, moderate, benign}) => {
   </Card>
 };
 
+function convertDec(v) {
+  return Math.round(v * 100) / 100
+}
+
 const headRows = [
   { id: 'reference_base', label: 'Reference base' },
   { id: 'alternativeBase', label: 'Alternative base' },
   { id: 'geneName', label: 'Gene name' },
   { id: 'position', label: 'Position' },
   { id: 'mutationType', label: 'Mutation Type' },
-  { id: 'alleleFrequency', label: 'Allele Frequency' },
+  { id: 'alleleFrequency', label: 'Allele Frequency', formatter : convertDec},
 
 ];
 
@@ -177,10 +186,12 @@ export default function EnhancedTable(props) {
                         style={{cursor:'pointer'}}>
                     {getDrName(getUser(ids.userId))}
                   </Link> › <Link onClick={() =>
-                  history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples`)}
+                  history.push(
+                    `/users/${ids.userId}/patients/${ids.patientId}/samples`)}
                                   style={{cursor:'pointer'}}>
                   {getPatientName(getPatient(ids.patientId))}
-                </Link> › Sample {ids.sampleId} ({getSampleType(getSample(ids.sampleId).sampleType)}) variants
+                </Link> › Sample {ids.sampleId} (
+                  {getSampleType(getSample(ids.sampleId).sampleType)}) variants
                 </div>
               }
               ids={ids}
@@ -209,10 +220,12 @@ export default function EnhancedTable(props) {
                     style={{cursor:'pointer'}}>
                 {getDrName(getUser(ids.userId))}
               </Link> › <Link onClick={() =>
-              history.push(`/users/${ids.userId}/patients/${ids.patientId}/samples`)}
+              history.push(
+                `/users/${ids.userId}/patients/${ids.patientId}/samples`)}
                               style={{cursor:'pointer'}}>
               {getPatientName(getPatient(ids.patientId))}
-            </Link> › Sample {ids.sampleId} ({getSampleType(getSample(ids.sampleId).sampleType)}) variants
+            </Link> › Sample {ids.sampleId} (
+              {getSampleType(getSample(ids.sampleId).sampleType)}) variants
             </div>
           }
           ids={ids}
@@ -247,8 +260,6 @@ export default function EnhancedTable(props) {
               {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  // console.log(row)
-
                   return (
                     <TableRow
                       hover
@@ -258,9 +269,8 @@ export default function EnhancedTable(props) {
                       className={classes.row}
                     >
                       {headRows.map(col => {
-
                           return <TableCell key={col.id}>
-                            {row[col.id]}
+                           {formatCell(row[col.id], col.formatter, row)}
                           </TableCell>
                       }
 
