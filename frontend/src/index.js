@@ -8,10 +8,10 @@ import { createBrowserHistory } from 'history';
 
 import App from './App';
 
-import UsersList from "./UsersList";
 import PatientsList from "./PatientsList";
 import SamplesList from "./SamplesList";
 import VariantsList from "./VariantsList";
+import DoctorsModal from "./DoctorsModal"
 
 
 
@@ -38,7 +38,7 @@ const routing = (
           <Route
             path="/users/" exact
             render={(routeProps) => (
-              <UsersList {...routeProps} ids={{}}/>
+              <DoctorsModal {...routeProps} ids={{}}/>
               )}
           />
           <Route
