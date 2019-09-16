@@ -35,37 +35,49 @@ const routing = (
       <Router history={history}>
         <Switch>
           <Route path="/" exact component={App}/>
-          <Route path="/users/" exact
-                 render={(routeProps) => (
-                   <UsersList {...routeProps}
-                              ids={{}}/>
-                 )}
+          <Route
+            path="/users/" exact
+            render={(routeProps) => (
+              <UsersList {...routeProps} ids={{}}/>
+              )}
           />
-          <Route path="/users/:userId/patients/" exact
-                 render={(routeProps) => (
-                   <PatientsList {...routeProps}
-                                 ids={{userId: routeProps.match.params.userId}}
-                   />
-                 )}/>
-          <Route path="/users/:userId/patients/:patientId/samples/" exact
-                 render={(routeProps) => (
-                   <SamplesList {...routeProps}
-                                ids={{
-                                  userId: routeProps.match.params.userId,
-                                  patientId: routeProps.match.params.patientId,
-                                }}
-                   />
-                 )}/>
-          <Route path="/users/:userId/patients/:patientId/samples/:sampleId/variants/" exact
-                 render={(routeProps) => (
-                   <VariantsList {...routeProps}
-                                 ids={{
-                                   userId: routeProps.match.params.userId,
-                                   patientId: routeProps.match.params.patientId,
-                                   sampleId: routeProps.match.params.sampleId,
-                                 }}
-                   />
-                 )}/>
+          <Route
+            path="/users/:userId/patients/"
+            exact
+            render={(routeProps) => (
+              <PatientsList
+                {...routeProps}
+                ids={{userId: routeProps.match.params.userId}}
+              />
+              )}
+          />
+          <Route
+            path="/users/:userId/patients/:patientId/samples/"
+            exact
+            render={(routeProps) => (
+              <SamplesList
+                {...routeProps}
+                ids={{
+                  userId: routeProps.match.params.userId,
+                  patientId: routeProps.match.params.patientId,
+                }}
+              />
+              )}
+          />
+          <Route
+            path="/users/:userId/patients/:patientId/samples/:sampleId/variants/"
+            exact
+            render={(routeProps) => (
+              <VariantsList
+                {...routeProps}
+                ids={{
+                  userId: routeProps.match.params.userId,
+                  patientId: routeProps.match.params.patientId,
+                  sampleId: routeProps.match.params.sampleId,
+                }}
+              />
+              )}
+          />
         </Switch>
       </Router>
     </MuiThemeProvider>
